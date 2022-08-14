@@ -12,8 +12,7 @@ Alticns is a command line tool to manage alternative icons for Mac apps easily.
 You can install alticns from Homebrew.
 
 ```shell
-$ brew tap Fus1onDev/homebrew-tap
-$ brew install alticns
+$ brew install Fus1onDev/tap/alticns
 ```
 
 ## Usage
