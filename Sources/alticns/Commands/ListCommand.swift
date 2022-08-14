@@ -11,9 +11,17 @@ import SwiftCLI
 class ListCommand: Command {
     let name = "list"
     let shortDescription = "Shows list of stored icons"
+
+    let storeDirUrl = URL(fileURLWithPath: NSHomeDirectory()+"/.alticns", isDirectory: true)
     
     func execute() throws {
-        let storeDirUrl = URL(fileURLWithPath: ".alticns", isDirectory: true)
+        let fileManager: FileManager = FileManager.default
+        var isDir: ObjCBool = true
+        if !fileManager.fileExists(atPath: storeDirUrl.path, isDirectory: &isDir) {
+          print("Warn: .alticns directory does not exist")
+          exit(0)
+        } 
+
         printChildren(storeDirUrl, 0)
     }
 

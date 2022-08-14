@@ -11,6 +11,8 @@ import SwiftCLI
 class ResetCommand: Command {
     let name = "reset"
     let shortDescription = "Resets icon changes"
+
+    let storeDirUrl = URL(fileURLWithPath: NSHomeDirectory()+"/.alticns", isDirectory: true)
     
     @Param var app: String?
     @Flag("-a", "--all", description: "Reset all icons") var all: Bool
@@ -18,7 +20,6 @@ class ResetCommand: Command {
 
     func execute() throws {
         if all {
-            let storeDirUrl = URL(fileURLWithPath: ".alticns", isDirectory: true)
             checkChildren(storeDirUrl)
         } else if let app = app {
             guard validate(app) else {
@@ -31,7 +32,6 @@ class ResetCommand: Command {
                 if path.hasPrefix("/") {
                     path = String(path.dropFirst())
                 }
-                let storeDirUrl = URL(fileURLWithPath: ".alticns", isDirectory: true)
                 let storedIconUrl = storeDirUrl.appendingPathComponent(path, isDirectory: false)
                 remove(storedIconUrl.path)
             }

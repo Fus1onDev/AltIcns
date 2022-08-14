@@ -11,6 +11,8 @@ import SwiftCLI
 class SetCommand: Command {
     let name = "set"
     let shortDescription = "Sets an alternate icon for the app"
+
+    let storeDirUrl = URL(fileURLWithPath: NSHomeDirectory()+"/.alticns", isDirectory: true)
     
     @Param var app: String?
     @Param var icon: String?
@@ -20,7 +22,6 @@ class SetCommand: Command {
 
     func execute() {
         if all {
-            let storeDirUrl = URL(fileURLWithPath: ".alticns", isDirectory: true)
             checkChildren(storeDirUrl)
         } else if store {
             if let app = app {
@@ -32,7 +33,6 @@ class SetCommand: Command {
                 if path.hasPrefix("/") {
                     path = String(path.dropFirst())
                 }
-                let storeDirUrl = URL(fileURLWithPath: ".alticns", isDirectory: true)
                 let storedIconUrl = storeDirUrl.appendingPathComponent(path, isDirectory: false)
                 
                 let fileManager: FileManager = FileManager.default
@@ -58,7 +58,6 @@ class SetCommand: Command {
             if path.hasPrefix("/") {
                 path = String(path.dropFirst())
             }
-            let storeDirUrl = URL(fileURLWithPath: ".alticns", isDirectory: true)
             let storedIconUrl = storeDirUrl.appendingPathComponent(path, isDirectory: false)
             
             copyIcon(icon, storedIconUrl)
