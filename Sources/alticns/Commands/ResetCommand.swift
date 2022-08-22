@@ -12,7 +12,7 @@ class ResetCommand: Command {
     let name = "reset"
     let shortDescription = "Resets icon changes"
 
-    let storeDirUrl = URL(fileURLWithPath: NSHomeDirectory()+"/.alticns", isDirectory: true)
+    let storeDirUrl = FileManager.homeDirectoryURL.appendingPathComponent(".alticns", isDirectory: true)
     
     @Param var app: String?
     @Flag("-a", "--all", description: "Reset all icons") var all: Bool

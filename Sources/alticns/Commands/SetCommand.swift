@@ -12,7 +12,7 @@ class SetCommand: Command {
     let name = "set"
     let shortDescription = "Sets an alternate icon for the app"
 
-    let storeDirUrl = URL(fileURLWithPath: NSHomeDirectory()+"/.alticns", isDirectory: true)
+    let storeDirUrl = FileManager.homeDirectoryURL.appendingPathComponent(".alticns", isDirectory: true)
     
     @Param var app: String?
     @Param var icon: String?

@@ -12,7 +12,7 @@ class ListCommand: Command {
     let name = "list"
     let shortDescription = "Shows list of stored icons"
 
-    let storeDirUrl = URL(fileURLWithPath: NSHomeDirectory()+"/.alticns", isDirectory: true)
+    let storeDirUrl = FileManager.homeDirectoryURL.appendingPathComponent(".alticns", isDirectory: true)
     
     func execute() throws {
         let fileManager: FileManager = FileManager.default
